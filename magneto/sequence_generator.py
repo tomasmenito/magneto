@@ -9,6 +9,15 @@ class SequenceGenerator(ABC):
         raise NotImplementedError()
 
 
+class ComposedSequenceGenerator(SequenceGenerator):
+    def __init__(self, *generators: SequenceGenerator):
+        self.generators = generators
+
+    def generate_sequences(self, matrix: Sequence[Sequence[str]]) -> Iterable[Iterable[str]]:
+        for generator in self.generators:
+            yield from generator.generate_sequences(matrix)
+
+
 class HorizontalSequenceGenerator(SequenceGenerator):
     def generate_sequences(self, matrix: Sequence[Sequence[str]]) -> Iterable[Iterable[str]]:
         for row in matrix:

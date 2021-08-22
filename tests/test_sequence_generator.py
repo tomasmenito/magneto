@@ -1,6 +1,7 @@
 import pytest
 
 from magneto.sequence_generator import (
+    ComposedSequenceGenerator,
     HorizontalSequenceGenerator,
     ObliqueSequenceGenerator,
     VerticalSequenceGenerator,
@@ -67,3 +68,17 @@ class TestObliqueSequenceGenerator:
             ).generate_sequences(matrix)
         )
         assert ["".join(s) for s in sequences] == expected
+
+
+class TestComposedGenerator:
+    @pytest.mark.parametrize(
+        "matrix, expected",
+        [
+            (["aa"], ["aa", "a", "a"]),
+            (["aa", "bb"], ["aa", "bb", "ab", "ab"]),
+            (["ab", "cd"], ["ab", "cd", "ac", "bd"]),
+        ],
+    )
+    def test_composed_generator(self, matrix, expected):
+        composed = ComposedSequenceGenerator(HorizontalSequenceGenerator(), VerticalSequenceGenerator())
+        assert ["".join(s) for s in composed.generate_sequences(matrix)] == expected
