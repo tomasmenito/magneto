@@ -17,8 +17,8 @@ class HorizontalSequenceGenerator(SequenceGenerator):
 
 class VerticalSequenceGenerator(SequenceGenerator):
     def generate_sequences(self, matrix: Sequence[Sequence[str]]) -> Iterable[Iterable[str]]:
-        length = len(matrix[0])
-        for index in range(length):
+        width = len(matrix[0])
+        for index in range(width):
             yield self._vertical_sequence(matrix, index)
 
     def _vertical_sequence(self, matrix: Sequence[Sequence[str]], index: int) -> Iterable[str]:
