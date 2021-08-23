@@ -76,3 +76,13 @@ class ObliqueSequenceGenerator(SequenceGenerator):
                 column += increment
                 if column < 0:
                     break
+
+
+class AllDirectionsSequenceGenerator(ComposedSequenceGenerator):
+    def __init__(self):
+        super().__init__(
+            HorizontalSequenceGenerator(),
+            VerticalSequenceGenerator(),
+            ObliqueSequenceGenerator(direction=ObliqueSequenceGenerator.Direction.DOWN_RIGHT),
+            ObliqueSequenceGenerator(direction=ObliqueSequenceGenerator.Direction.DOWN_LEFT),
+        )
