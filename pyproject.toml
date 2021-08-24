@@ -21,6 +21,7 @@ authors = ["Tomas Menito <tomasmenito@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 Flask = "^2.0.1"
+boto3 = "^1.18.27"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
