@@ -6,3 +6,6 @@ run:
 
 coverage:
 	poetry run pytest --cov .
+
+deploy:
+	serverless deploy

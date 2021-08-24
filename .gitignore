@@ -138,3 +138,9 @@ dmypy.json
 cython_debug/
 
 node_modules/
+
+# Serverless stuff
+admin.env
+.env
+_meta
+.serverless
