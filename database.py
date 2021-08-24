@@ -31,7 +31,7 @@ class DynamoDBDatabase:
             "count_human_dna": self.mutant_count(False),
         }
         try:
-            ratio: float = stats["count_mutant_dna"] / stats["count_human_dna"]
+            ratio: float = stats["count_mutant_dna"] / (stats["count_mutant_dna"] + stats["count_human_dna"])
         except ZeroDivisionError:
             ratio = 0.0
         stats["ratio"] = ratio
